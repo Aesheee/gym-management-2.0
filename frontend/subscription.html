@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subscription</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Choose Your Plan</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="coaches.html">Coaches</a></li>
+        <li><a href="training.html">Training</a></li>
+        <li><a href="subscription.html">Subscription</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <form id="subscription-form">
+      <label>
+        <input type="radio" name="plan" value="Basic"> Basic Plan - $5
+      </label><br>
+      <label>
+        <input type="radio" name="plan" value="Premium"> Premium Plan - $20
+      </label><br>
+
+      <button type="submit">Subscribe</button>
+    </form>
+
+    <h2>Transaction History</h2>
+    <table id="transaction-history">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Plan</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Transaction history will be populated here -->
+      </tbody>
+    </table>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Techvibe Group. All Rights Reserved.</p>
+  </footer>
+
+  <script src="subscription.js"></script>
+</body>
+</html>
