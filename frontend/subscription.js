@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const plan = document.querySelector('input[name="plan"]:checked').value;
 
-        fetch('http://localhost:5000/api/subscribe', {
+        fetch('http://localhost:3000/api/subscribe', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ plan, amount: plan === 'Premium' ? 20 : 5 })

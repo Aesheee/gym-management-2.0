@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    fetch('http://localhost:5000/api/coaches')
+    fetch('http://localhost:3000/api/coaches')
         .then(response => response.json())
         .then(coaches => {
             const coachList = document.getElementById('coach-list');
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const coachName = document.getElementById('coach-name').value;
         const coachSpecialty = document.getElementById('coach-specialty').value;
 
-        fetch('http://localhost:5000/api/coaches', {
+        fetch('http://localhost:3000/api/coaches', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name: coachName, specialty: coachSpecialty })

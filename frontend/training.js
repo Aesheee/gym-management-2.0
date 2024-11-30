@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    fetch('http://localhost:5000/api/coaches')
+    fetch('http://localhost:3000/api/coaches')
         .then(response => response.json())
         .then(coaches => {
             const coachSelect = document.getElementById('coach-select');

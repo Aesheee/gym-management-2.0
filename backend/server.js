@@ -5,7 +5,7 @@ const cors = require('cors');
 const path = require('path'); // Import the path module to resolve static file paths
 
 const app = express();
-const port = 5000;
+const port = 3000;
 
 // Middleware
 app.use(cors()); // Enable Cross-Origin Resource Sharing (CORS)
