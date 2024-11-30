@@ -5,7 +5,7 @@ const cors = require('cors');
 const path = require('path'); // Import the path module to resolve static file paths
 
 const app = express();
-const port = 3000;
+const port = 5000;
 
 // Middleware
 app.use(cors()); // Enable Cross-Origin Resource Sharing (CORS)
@@ -32,6 +32,68 @@ app.use(express.static(path.join(__dirname, '../frontend')));
 
 // API Endpoints
 
+// Registration endpoint
+app.post('/api/users', async (req, res) => {
+  const { name, email, password } = req.body;
+
+  try {
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Insert user into the database
+    db.query(
+      'INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)',
+      [name, email, hashedPassword],
+      (err, results) => {
+        if (err) {
+          if (err.code === 'ER_DUP_ENTRY') {
+            res.status(400).json({ message: 'Email already exists' });
+          } else {
+            res.status(500).json({ message: 'Database error', error: err.message });
+          }
+          return;
+        }
+        res.status(201).json({ message: 'User registered successfully', userId: results.insertId });
+      }
+    );
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
+
+// Login endpoint
+app.post('/api/users', (req, res) => {
+  const { email, password } = req.body;
+
+  // Fetch user from the database
+  db.query(
+    'SELECT * FROM users WHERE email = ?',
+    [email],
+    async (err, results) => {
+      if (err) {
+        res.status(500).json({ message: 'Database error', error: err.message });
+        return;
+      }
+
+      if (results.length === 0) {
+        res.status(400).json({ message: 'Invalid email or password' });
+        return;
+      }
+
+      const user = results[0];
+
+      // Compare passwords
+      const passwordMatch = await bcrypt.compare(password, user.password_hash);
+      if (!passwordMatch) {
+        res.status(400).json({ message: 'Invalid email or password' });
+        return;
+      }
+
+      // Authentication successful
+      res.status(200).json({ message: 'Login successful', userId: user.id, name: user.name });
+    }
+  );
+});
 // Get all coaches
 app.get('/api/coaches', (req, res) => {
   db.query('SELECT * FROM coaches', (err, results) => {
