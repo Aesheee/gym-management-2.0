@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(data => {
                 if (data.success) {
                     alert('Registration successful! Please log in.');
-                    window.location.href = 'login.html'; // Redirect after success
+                    window.location.href = index.html; // Redirect after success
                 } else {
                     alert(data.message || 'Failed to register.');
                 }
