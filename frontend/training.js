@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
  // Fetch and populate coaches
- fetch('http://localhost:5000/api/coaches') // Assuming your server is running on port 3000
+ fetch('http://localhost:5100/api/coaches') // Assuming your server is running on port 3000
 .then(response => response.json())
 
 .then(coaches => {
@@ -26,7 +26,7 @@ document.getElementById('training-form').addEventListener('submit', (event) => {
  const reps = document.getElementById('reps').value;
  const coachId = document.getElementById('coach').value;
  // Save exercise data to the backend via POST request
- fetch('http://localhost:5000/api/training', { // Assuming your server is running on port 3000
+ fetch('http://localhost:5100/api/training', { // Assuming your server is running on port 3000
  method: 'POST',
  headers: { 'Content-Type': 'application/json' },
  body: JSON.stringify({ exercise, sets, reps, coachId })

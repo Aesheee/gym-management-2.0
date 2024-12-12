@@ -5,7 +5,7 @@ const cors = require('cors');
 const path = require('path'); // Import the path module to resolve static file paths
 
 const app = express();
-const port = 5000;
+const port = 5100;
 
 // Middleware
 app.use(cors()); // Enable Cross-Origin Resource Sharing (CORS)
@@ -126,6 +126,17 @@ app.post('/api/subscribe', (req, res) => {
       return;
     }
     res.status(201).json({ id: results.insertId, plan, amount });
+  });
+});
+
+// Get all transactions
+app.get('/api/transactions', (req, res) => {
+  db.query('SELECT * FROM transactions', (err, results) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    res.json(results);
   });
 });
 

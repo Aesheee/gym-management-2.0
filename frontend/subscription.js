@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const plan = document.querySelector('input[name="plan"]:checked').value;
 
-        fetch('http://localhost:5000/api/subscribe', {
+        fetch('http://localhost:5100/api/subscribe', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ plan, amount: plan === 'Premium' ? 20 : 5 })
@@ -36,5 +36,29 @@ document.addEventListener("DOMContentLoaded", () => {
             transactionTable.appendChild(newRow);
         })
         .catch(error => console.error('Error:', error));
+        
+        // Fetch transaction history from the server when the page loads
+  fetch('http://localhost:5100/api/transactions')
+  .then(response => response.json())
+  .then(transactions => {
+    transactions.forEach(transaction => {
+      const newRow = document.createElement('tr');
+      const dateCell = document.createElement('td');
+      dateCell.textContent = transaction.date;
+
+      const planCell = document.createElement('td');
+      planCell.textContent = transaction.plan;
+
+      const amountCell = document.createElement('td');
+      amountCell.textContent = `$${transaction.amount}`;
+
+      newRow.appendChild(dateCell);
+      newRow.appendChild(planCell);
+      newRow.appendChild(amountCell);
+
+      transactionTable.appendChild(newRow);
+    });
+  })
+  .catch(error => console.error('Error:', error));
     });
 });
