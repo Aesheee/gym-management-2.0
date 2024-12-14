@@ -12,6 +12,7 @@ body {
   background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20230613/pngtree-black-and-white-gym-room-with-a-row-of-equipment-image_2911173.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
   font-family: Arial, sans-serif;
   line-height: 1.6;
   padding: 20px;
@@ -192,6 +193,8 @@ button:hover {
 .transaction-history table {
   width: 100%;
   border-collapse: collapse;
+  justify-content: center;
+  
 }
 
 .transaction-history th,

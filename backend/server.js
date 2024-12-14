@@ -117,6 +117,7 @@ app.post('/api/coaches', (req, res) => {
   });
 });
 
+
 // Subscribe to a plan
 app.post('/api/subscribe', (req, res) => {
   const { plan, amount } = req.body;
