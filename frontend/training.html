@@ -23,28 +23,37 @@
     <form id="training-form">
       <label for="exercise">Exercise:</label>
       <input type="text" id="exercise" required>
-
+  
       <label for="sets">Sets:</label>
       <input type="number" id="sets" required>
-
+  
       <label for="reps">Reps:</label>
       <input type="number" id="reps" required>
-
+  
       <label for="coach">Choose Coach:</label>
       <select id="coach" required>
         <!-- Coaches will be populated dynamically -->
       </select>
-
+  
       <button type="submit">Add Exercise</button>
     </form>
-
+  
     <h2>Your Training Routine</h2>
-    <ul id="training-routine">
-      <!-- frontend/training.html -->
-      <div id="training-routine-list"></div>
-    </ul>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Exercise</th>
+          <th>Sets</th>
+          <th>Reps</th>
+          <th>Coach</th>
+        </tr>
+      </thead>
+      <tbody id="routine-table-body">
+        <!-- Routines will be dynamically added here -->
+      </tbody>
+    </table>
   </main>
-
+  
   <footer>
     <p>&copy; 2024 Techvibe Group. All Rights Reserved.</p>
   </footer>

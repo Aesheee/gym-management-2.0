@@ -120,15 +120,17 @@ app.post('/api/coaches', (req, res) => {
 
 // Subscribe to a plan
 app.post('/api/subscribe', (req, res) => {
-  const { plan, amount } = req.body;
-  db.query('INSERT INTO transactions (plan, amount, date) VALUES (?, ?, NOW())', [plan, amount], (err, results) => {
+  const { plan, clientName } = req.body;
+  // Insert the plan and client name into the database
+  db.query('INSERT INTO transactions (plan, client_name, amount, date) VALUES (?, ?, ?, NOW())', [plan, clientName, plan === 'Premium' ? 20 : 5], (err, results) => {
     if (err) {
       res.status(500).json({ error: err.message });
       return;
     }
-    res.status(201).json({ id: results.insertId, plan, amount });
+    res.status(201).json({ id: results.insertId, plan, clientName, amount: plan === 'Premium' ? 20 : 5 });
   });
 });
+
 
 // Get all transactions
 app.get('/api/transactions', (req, res) => {
@@ -138,7 +140,7 @@ app.get('/api/transactions', (req, res) => {
       return;
     }
     res.json(results);
-  });
+  }); 
 });
 
 // Catch-all route to serve the frontend index.html (for any unrecognized routes)

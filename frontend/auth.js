@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
  .then(data => {
  if (data.success) {
  alert('Login successful!');
- window.location.href = 'dashboard.html'; // Redirect after success
+ window.location.href = 'index.html'; // Redirect after success
  } else {
 alert('Invalid email or password.');
  }

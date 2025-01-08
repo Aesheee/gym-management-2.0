@@ -181,6 +181,7 @@ button:hover {
 }
 
 .payment-form button {
+  justify-content: center;
   background-color: #4CAF50;
   color: white;
   border: none;
@@ -189,11 +190,19 @@ button:hover {
   padding: 8px;
   font-size: 16px;
 }
+#subscription-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
 
 .transaction-history table {
   width: 100%;
   border-collapse: collapse;
   justify-content: center;
+  margin-top: 20px;
   
 }
 
